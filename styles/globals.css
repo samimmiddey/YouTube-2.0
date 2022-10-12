@@ -171,3 +171,9 @@ body.dark::-webkit-scrollbar-thumb {
     height: 75px;
   }
 }
+
+/* Comment Text Link Overflowing Solution */
+.comment-text {
+  word-wrap: break-word;
+  word-break: break-word;
+}

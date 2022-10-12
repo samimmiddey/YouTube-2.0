@@ -52,12 +52,14 @@ const Comment = ({ data }) => {
                </Typography>
             </Box>
             <Typography
+               className='comment-text'
                sx={{
                   fontSize: '14px',
                   color: 'text.primary',
                   marginTop: '5px',
                   lineHeight: 1.4
-               }}>
+               }}
+            >
                {data.textOriginal}
             </Typography>
             <Box

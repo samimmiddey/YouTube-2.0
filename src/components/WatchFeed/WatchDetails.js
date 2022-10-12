@@ -42,18 +42,28 @@ const WatchDetails = ({ data, videoID, channelData }) => {
             className='react-player'
             playing={true}
          />
-         <Box sx={{ marginTop: '1.5rem' }}>
+         <Box
+            sx={theme => ({
+               marginTop: '1.25rem',
+               [theme.breakpoints.down('md')]: {
+                  marginTop: '1rem'
+               },
+               [theme.breakpoints.down('sm')]: {
+                  marginTop: '12px'
+               }
+            })}
+         >
             <Typography
                className='title-wrap'
                sx={theme => ({
-                  fontWeight: 500,
+                  fontWeight: 600,
                   fontSize: '20px',
                   color: 'text.primary',
                   [theme.breakpoints.down('xl')]: {
                      fontSize: '18px'
                   },
                   [theme.breakpoints.down('lg')]: {
-                     fontSize: '16px'
+                     fontSize: '17px'
                   },
                   [theme.breakpoints.down('sm')]: {
                      fontSize: '15px'
