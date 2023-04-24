@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, IconButton, Tooltip, useMediaQuery, useTheme, styled } from '@mui/material';
+import { Box, IconButton, Tooltip, useMediaQuery, useTheme, styled, Avatar } from '@mui/material';
 import { FiMenu } from 'react-icons/fi';
 import { FiSearch } from 'react-icons/fi';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
@@ -7,6 +7,8 @@ import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import SearchBar from '../UI/SearchBar';
 import { useReactContext } from '../../context/ContextProvider';
 import Link from 'next/link';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 // ***** COMPONENTS ***** //
 // Navbar Wrapper Component
@@ -20,7 +22,7 @@ const NavbarWrapper = styled(Box)(({ theme, darkmode }) => ({
    justifyContent: 'space-between',
    height: '60px',
    padding: '0 2rem 0 1.5rem',
-   backgroundColor: darkmode === 'true' ? '#21242c' : '#F8F9F9',
+   backgroundColor: darkmode === 'true' ? '#16181d' : '#F8F9F9',
    zIndex: 999999,
    [theme.breakpoints.down('sm')]: {
       padding: '0 1.5rem 0 1rem'
@@ -32,6 +34,7 @@ const Navbar = () => {
 
    const theme = useTheme();
    const mdWidth = useMediaQuery(theme.breakpoints.down('md'));
+   const smWidth = useMediaQuery(theme.breakpoints.down('sm'));
 
    return (
       <NavbarWrapper darkmode={darkMode.toString()}>
@@ -61,36 +64,68 @@ const Navbar = () => {
          </Box>
          {/* Search Bar */}
          <Box sx={theme => ({
-            maxWidth: '600px',
+            maxWidth: '700px',
             width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            columnGap: '10px',
+            justifyContent: 'flex-end',
             [theme.breakpoints.down('md')]: {
                display: 'none'
             }
          })}
          >
             <SearchBar />
+            <Tooltip title='Voice Search' placement='bottom'>
+               <IconButton
+                  sx={{
+                     color: 'text.icon',
+                     backgroundColor: darkMode ? '#373c4975' : '#ededed',
+                     "&:hover": {
+                        backgroundColor: darkMode ? '#373c4975' : '#ededed'
+                     }
+                  }}
+               >
+                  <KeyboardVoiceIcon />
+               </IconButton>
+            </Tooltip>
          </Box>
          {/* Dark Mode Icon */}
          <Box
-            sx={{
+            sx={theme => ({
                display: 'flex',
                alignItems: 'center',
-               columnGap: '2rem'
-            }}
+               columnGap: '14px',
+               marginLeft: '1rem',
+               [theme.breakpoints.down('lg')]: {
+                  columnGap: '8px'
+               },
+               [theme.breakpoints.down('md')]: {
+                  marginLeft: 0,
+                  columnGap: '5px'
+               }
+            })}
          >
             {
                mdWidth &&
-               <FiSearch
-                  onClick={() => toggleSearchModal()}
-                  style={{
-                     fontSize: '1.4rem',
-                     color: darkMode ? '#aeacb9' : '#545260',
-                     cursor: 'pointer'
-                  }}
-               />
+               <Tooltip title='Search' placement='bottom'>
+                  <IconButton
+                     onClick={() => toggleSearchModal()}
+                     size={smWidth ? 'small' : 'medium'}
+                  >
+                     <FiSearch
+                        style={{
+                           fontSize: '1.4rem',
+                           color: darkMode ? '#aeacb9' : '#545260',
+                           cursor: 'pointer'
+                        }}
+                     />
+                  </IconButton>
+               </Tooltip>
             }
             <Tooltip title='Dark Mode' placement='bottom'>
                <IconButton
+                  size={smWidth ? 'small' : 'medium'}
                   onClick={() => {
                      if (darkMode) {
                         setDarkMode(false);
@@ -102,20 +137,47 @@ const Navbar = () => {
                   }}
                   sx={{
                      color: 'text.icon',
-                     backgroundColor: darkMode ? '#373c49' : '#E5E7E9',
-                     "&:hover": {
-                        backgroundColor: darkMode ? '#373c49' : '#E5E7E9'
-                     }
+                     // backgroundColor: darkMode ? '#373c49' : '#E5E7E9',
+                     // "&:hover": {
+                     //    backgroundColor: darkMode ? '#373c49' : '#E5E7E9'
+                     // }
                   }}
                >
                   {
-                     darkMode ? <LightModeOutlinedIcon sx={{ fontSize: '1.3rem' }} />
-                        : <DarkModeOutlinedIcon sx={{ fontSize: '1.3rem' }} />
+                     darkMode ? <LightModeOutlinedIcon />
+                        : <DarkModeOutlinedIcon />
                   }
                </IconButton>
             </Tooltip>
+            <Tooltip title='Notification' placement='bottom'>
+               <IconButton
+                  size={smWidth ? 'small' : 'medium'}
+                  sx={theme => ({
+                     color: 'text.icon',
+                     [theme.breakpoints.down(375)]: {
+                        display: 'none'
+                     }
+                  })}
+               >
+                  <NotificationsNoneOutlinedIcon />
+               </IconButton>
+            </Tooltip>
+            <Tooltip title='Profile' placement='bottom'>
+               <Avatar
+                  sx={theme => ({
+                     height: '36px',
+                     width: '36px',
+                     cursor: 'pointer',
+                     marginLeft: '14px',
+                     [theme.breakpoints.down('md')]: {
+                        marginLeft: '8px'
+                     }
+                  })}
+                  src='/profile.jpg'
+               />
+            </Tooltip>
          </Box>
-      </NavbarWrapper>
+      </NavbarWrapper >
    );
 };
 

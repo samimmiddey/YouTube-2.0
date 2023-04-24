@@ -22,7 +22,7 @@ const SidebarDrawer = styled(Drawer)(({ theme }) => ({
       width: drawerWidth,
       boxSizing: 'border-box',
       borderWidth: 0,
-      boxShadow: '0 0 50px rgba(0, 0, 0, 0.015)'
+      // boxShadow: '0 0 50px rgba(0, 0, 0, 0.015)'
    },
    [theme.breakpoints.down('lg')]: {
       zIndex: 999999999
@@ -38,7 +38,7 @@ const LogoMenuWrapper = styled(Box)(({ theme, darkmode }) => ({
    left: 0,
    height: '60px',
    width: '256px',
-   backgroundColor: darkmode === 'true' ? '#21242c' : '#F8F9F9',
+   backgroundColor: darkmode === 'true' ? '#16181d' : '#F8F9F9',
    zIndex: 99,
    paddingLeft: '1.5rem',
    [theme.breakpoints.down('sm')]: {
@@ -51,7 +51,7 @@ const SidebarList = styled(Box)(({ theme, darkmode }) => ({
    marginTop: '60px',
    paddingTop: '10px',
    overflowY: 'hidden',
-   backgroundColor: darkmode === 'true' ? '#21242c' : '#F8F9F9',
+   backgroundColor: darkmode === 'true' ? '#16181d' : '#F8F9F9',
    '&:hover': {
       overflowY: 'auto'
    },
@@ -76,10 +76,10 @@ const backdropStyle = (theme) => ({
 // Sidebar List Category Title Style
 const categoryTitleStyle = (theme) => ({
    fontWeight: 600,
-   fontSize: '14px',
+   fontSize: '13px',
    color: 'text.disabled',
    ml: 4,
-   py: '12px',
+   py: '10px',
    [theme.breakpoints.down('sm')]: {
       ml: 3
    }
@@ -143,13 +143,16 @@ const Sidebar = () => {
                                     sidebarHandler();
                                  }}
                                  sx={theme => ({
-                                    margin: '5px 10px 5px 20px',
-                                    borderRadius: '5px',
-                                    px: 1,
+                                    margin: '5px 12px 5px 20px',
+                                    borderRadius: '10px',
+                                    padding: '7px 10px',
                                     justifyContent: 'initial',
-                                    backgroundColor: (item.text === 'Home' ? router.asPath : router.asPath.replace('/', '')) === (item.text === 'Home' ? '/' : item.text.split(' ').join('').toLowerCase()) ? (darkMode ? '#c84646' : '#ff6666') : '',
+                                    backgroundColor: (item.text === 'Home' ? router.asPath : router.asPath.replace('/', '')) === (item.text === 'Home' ? '/' : item.text.split(' ').join('').toLowerCase()) ? (darkMode ? '#df4949' : '#ff4d4d') : '',
                                     '&:hover': {
-                                       backgroundColor: (item.text === 'Home' ? router.asPath : router.asPath.replace('/', '')) === (item.text === 'Home' ? '/' : item.text.split(' ').join('').toLowerCase()) ? (darkMode ? '#c84646' : '#ff6666') : '',
+                                       backgroundColor: (item.text === 'Home' ? router.asPath : router.asPath.replace('/', '')) === (item.text === 'Home' ? '/' : item.text.split(' ').join('').toLowerCase()) ? (darkMode ? '#df4949' : '#ff4d4d') : '',
+                                    },
+                                    [theme.breakpoints.down('lg')]: {
+                                       margin: '5px 10px 5px 16px',
                                     },
                                     [theme.breakpoints.down('sm')]: {
                                        margin: '5px 10px'
@@ -167,7 +170,12 @@ const Sidebar = () => {
                                  </ListItemIcon>
                                  <ListItemText
                                     primary={
-                                       <Typography style={{ fontSize: '15px' }}>
+                                       <Typography
+                                          sx={{
+                                             fontSize: '14px',
+                                             fontWeight: 500
+                                          }}
+                                       >
                                           {item.text}
                                        </Typography>
                                     }

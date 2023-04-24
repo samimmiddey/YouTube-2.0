@@ -34,12 +34,9 @@ const CommentFeed = () => {
    return (
       <Box>
          <Box
-            sx={theme => ({
-               textAlign: 'center',
-               [theme.breakpoints.down('sm')]: {
-                  textAlign: 'start'
-               }
-            })}
+            sx={{
+               textAlign: 'center'
+            }}
          >
             <Button
                onClick={getComments}
@@ -47,10 +44,10 @@ const CommentFeed = () => {
                disableRipple
                variant='text'
                sx={{
-                  color: 'text.disabled',
+                  color: 'text.secondary',
                   padding: '4px 0',
                   fontSize: '12px',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   '&:hover': {
                      background: 'transparent'
                   }

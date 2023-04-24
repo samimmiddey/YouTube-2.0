@@ -15,6 +15,7 @@ const CardThumbnail = styled('img')(({ theme }) => ({
    width: '100%',
    objectFit: 'cover',
    aspectRatio: '16/9',
+   borderRadius: '10px',
    [theme.breakpoints.down('md')]: {
       maxWidth: '400px',
       maxHeight: '220px',
@@ -64,7 +65,7 @@ const cardTitleStyle = (theme) => ({
 const cardDateStyle = (theme) => ({
    fontSize: '14px',
    fontWeight: 500,
-   color: 'text.disabled',
+   color: 'text.secondary',
    [theme.breakpoints.down('sm')]: {
       fontSize: '13px'
    }
@@ -72,8 +73,8 @@ const cardDateStyle = (theme) => ({
 
 // Search Video Card Channel Title Style
 const cardChanelTitleStyle = (theme) => ({
-   fontSize: '15px',
-   fontWeight: 600,
+   fontSize: '14px',
+   fontWeight: 500,
    color: 'text.secondary',
    [theme.breakpoints.down('sm')]: {
       fontSize: '13px'

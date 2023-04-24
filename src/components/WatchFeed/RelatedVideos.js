@@ -35,128 +35,132 @@ const RelatedVideos = ({ relatedVideos }) => {
             }
          })}
       >
-         {relatedVideos.map((item, index) => (
-            <Link
-               key={index}
-               href={`/watch/${item.id.videoId}`}
-               style={{ textDecoration: 'none' }}
-            >
-               <Box
-                  sx={theme => ({
-                     [theme.breakpoints.down('sm')]: {
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'center'
-                     }
-                  })}
+         {
+            relatedVideos.map((item, index) => (
+               <Link
+                  key={index}
+                  href={`/watch/${item.id.videoId}`}
+                  style={{ textDecoration: 'none' }}
                >
                   <Box
                      sx={theme => ({
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(2, 1fr)',
-                        alignItems: 'start',
-                        columnGap: '10px',
-                        cursor: 'pointer',
-                        width: '369.5px',
-                        [theme.breakpoints.down(1600)]: {
-                           width: '350px'
-                        },
-                        [theme.breakpoints.down(1500)]: {
-                           width: '330px'
-                        },
-                        [theme.breakpoints.down(1400)]: {
-                           width: '300px'
-                        },
-                        [theme.breakpoints.down('lg')]: {
-                           gridTemplateColumns: 'none',
-                           maxWidth: '400px',
-                           width: '100%'
+                        [theme.breakpoints.down('sm')]: {
+                           width: '100%',
+                           display: 'flex',
+                           justifyContent: 'center'
                         }
                      })}
                   >
-                     <img
-                        src={item.snippet.thumbnails.high.url}
-                        style={{
-                           height: 'auto',
-                           width: '100%',
-                           objectFit: 'cover',
-                           aspectRatio: '16/9'
-                        }}
-                        alt=""
-                     />
                      <Box
                         sx={theme => ({
-                           display: 'flex',
-                           flexDirection: 'column',
+                           display: 'grid',
+                           gridTemplateColumns: 'repeat(2, 1fr)',
+                           alignItems: 'start',
+                           columnGap: '10px',
+                           cursor: 'pointer',
+                           width: '369.5px',
+                           [theme.breakpoints.down(1600)]: {
+                              width: '350px'
+                           },
+                           [theme.breakpoints.down(1500)]: {
+                              width: '330px'
+                           },
+                           [theme.breakpoints.down(1400)]: {
+                              width: '300px'
+                           },
                            [theme.breakpoints.down('lg')]: {
-                              marginTop: '8px'
+                              gridTemplateColumns: 'none',
+                              maxWidth: '400px',
+                              width: '100%'
                            }
                         })}
                      >
-                        <Typography
-                           className='title-wrap'
-                           variant='none'
+                        <img
+                           src={item.snippet.thumbnails.high.url}
+                           style={{
+                              height: 'auto',
+                              width: '100%',
+                              objectFit: 'cover',
+                              aspectRatio: '16/9',
+                              borderRadius: '10px'
+                           }}
+                           alt=""
+                        />
+                        <Box
                            sx={theme => ({
-                              fontWeight: 600,
-                              fontSize: '14px',
-                              color: 'text.primary',
+                              display: 'flex',
+                              flexDirection: 'column',
                               [theme.breakpoints.down('lg')]: {
-                                 fontSize: '16px'
-                              },
-                              [theme.breakpoints.down('sm')]: {
-                                 fontSize: '15px'
+                                 marginTop: '8px'
                               }
                            })}
                         >
-                           {item.snippet.title}
-                        </Typography>
-                        <Link href={`/channel/${item.snippet.channelId}`}>
+                           <Typography
+                              className='title-wrap'
+                              variant='none'
+                              sx={theme => ({
+                                 fontWeight: 600,
+                                 fontSize: '14px',
+                                 color: 'text.primary',
+                                 lineHeight: 1.4,
+                                 [theme.breakpoints.down('lg')]: {
+                                    fontSize: '16px'
+                                 },
+                                 [theme.breakpoints.down('sm')]: {
+                                    fontSize: '15px'
+                                 }
+                              })}
+                           >
+                              {item.snippet.title}
+                           </Typography>
+                           <Link href={`/channel/${item.snippet.channelId}`}>
+                              <Typography
+                                 className='channel-name-wrap'
+                                 sx={theme => ({
+                                    color: 'text.secondary',
+                                    fontSize: '12px',
+                                    fontWeight: 500,
+                                    marginTop: '5px',
+                                    width: 'max-content',
+                                    [theme.breakpoints.down('lg')]: {
+                                       fontSize: '14px',
+                                       marginTop: '3px'
+                                    },
+                                    [theme.breakpoints.down('sm')]: {
+                                       fontSize: '13px'
+                                    }
+                                 })}
+                              >
+                                 {item.snippet.channelTitle}
+                              </Typography>
+                           </Link>
                            <Typography
                               className='channel-name-wrap'
+                              variant='body1'
                               sx={theme => ({
                                  color: 'text.secondary',
                                  fontSize: '12px',
                                  fontWeight: 500,
-                                 marginTop: '5px',
-                                 width: 'max-content',
                                  [theme.breakpoints.down('lg')]: {
-                                    fontSize: '14px',
-                                    marginTop: '3px'
+                                    fontSize: '14px'
                                  },
                                  [theme.breakpoints.down('sm')]: {
                                     fontSize: '13px'
                                  }
                               })}
                            >
-                              {item.snippet.channelTitle}
+                              {relatedVideoTime(item.snippet.publishTime)}
                            </Typography>
-                        </Link>
-                        <Typography
-                           className='channel-name-wrap'
-                           variant='body1'
-                           sx={theme => ({
-                              color: 'text.disabled',
-                              fontSize: '12px',
-                              fontWeight: 500,
-                              [theme.breakpoints.down('lg')]: {
-                                 fontSize: '14px'
-                              },
-                              [theme.breakpoints.down('sm')]: {
-                                 fontSize: '13px'
-                              }
-                           })}
-                        >
-                           {relatedVideoTime(item.snippet.publishTime)}
-                        </Typography>
-                        {
-                           item.snippet.liveBroadcastContent === 'live' &&
-                           <LiveButton />
-                        }
+                           {
+                              item.snippet.liveBroadcastContent === 'live' &&
+                              <LiveButton />
+                           }
+                        </Box>
                      </Box>
                   </Box>
-               </Box>
-            </Link>
-         ))}
+               </Link>
+            ))
+         }
       </Box>
    );
 };

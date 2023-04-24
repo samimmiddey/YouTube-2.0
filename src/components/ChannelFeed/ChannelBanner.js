@@ -39,11 +39,24 @@ const IconButton = styled(Button)(({ theme, bgcolor }) => ({
 
 // ***** STYLES ***** //
 // First Box Style
-const firstBoxStyle = {
+const firstBoxStyle = theme => ({
    marginTop: '-1.5rem',
    position: 'relative',
-   marginBottom: '1rem'
-};
+   marginBottom: '1.5rem',
+   height: '275px',
+   display: 'flex',
+   alignItems: 'center',
+   justifyContent: 'center',
+   [theme.breakpoints.down('lg')]: {
+      height: '250px'
+   },
+   [theme.breakpoints.down('md')]: {
+      height: '200px'
+   },
+   [theme.breakpoints.down('sm')]: {
+      height: '150px'
+   }
+});
 
 // Icon Button Style
 const iconButtonWrapperStyle = (theme) => ({
@@ -60,11 +73,12 @@ const iconButtonWrapperStyle = (theme) => ({
 const secondBoxStyle = (theme) => ({
    width: '100%',
    display: 'flex',
-   alignItems: 'center',
+   alignItems: 'flex-start',
    justifyContent: 'space-between',
    [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
-      rowGap: '12px'
+      rowGap: '12px',
+      alignItems: 'center'
    }
 });
 
@@ -84,14 +98,14 @@ const channelAvatarStyle = (theme) => ({
       height: '40px',
       width: '40px'
    },
-   [theme.breakpoints.down('xs')]: {
-      display: 'none'
+   [theme.breakpoints.down(500)]: {
+      marginBottom: '10px'
    }
 });
 
 // Channel Title Style
 const channelTitleStyle = (theme) => ({
-   fontWeight: 700,
+   fontWeight: 600,
    fontSize: '20px',
    color: theme.palette.text.primary,
    [theme.breakpoints.down('lg')]: {
@@ -106,9 +120,12 @@ const channelTitleStyle = (theme) => ({
 const totalSubscribersStyle = (theme) => ({
    fontSize: '14px',
    fontWeight: 500,
-   color: theme.palette.text.disabled,
+   color: theme.palette.text.secondary,
    [theme.breakpoints.down('sm')]: {
       fontSize: '13px'
+   },
+   [theme.breakpoints.down(500)]: {
+      textAlign: 'center'
    }
 });
 
@@ -119,9 +136,10 @@ const ChannelBanner = ({ channelDetails }) => {
    return (
       <>
          {/* First Box */}
-         <Box sx={firstBoxStyle}>
+         <Box sx={firstBoxStyle} className='channel-cover-container'>
             <img
-               src='/cover.jpg'
+               // src='/cover.jpg'
+               src={channelDetails.brandingSettings.image.bannerExternalUrl}
                alt=""
                className='channel-cover'
             />
@@ -132,28 +150,34 @@ const ChannelBanner = ({ channelDetails }) => {
                      columnGap: '10px'
                   }}
                >
-                  {social.map((item, index) => (
-                     <IconButton
-                        disableElevation
-                        disableRipple
-                        key={index}
-                        bgcolor={item.bgColor}
-                     >
-                        {item.icon}
-                     </IconButton>
-                  ))}
+                  {
+                     social.map((item, index) => (
+                        <IconButton
+                           disableElevation
+                           disableRipple
+                           key={index}
+                           bgcolor={item.bgColor}
+                        >
+                           {item.icon}
+                        </IconButton>
+                     ))}
                </Box>
             </Box>
          </Box>
          {/* Second Box */}
          <Box className='container' sx={secondBoxStyle}>
             <Box
-               sx={{
-                  width: '100%',
+               sx={theme => ({
+                  width: '75%',
                   display: 'flex',
                   columnGap: '1rem',
-                  alignItems: 'center'
-               }}
+                  alignItems: 'flex-start',
+                  [theme.breakpoints.down(500)]: {
+                     width: '100%',
+                     flexDirection: 'column',
+                     alignItems: 'center'
+                  }
+               })}
             >
                <Avatar sx={channelAvatarStyle} src={channelDetails.snippet.thumbnails.medium.url} />
                <Box
@@ -167,8 +191,41 @@ const ChannelBanner = ({ channelDetails }) => {
                   <Typography className='title-wrap' sx={channelTitleStyle}>
                      {channelDetails.snippet.title}
                   </Typography>
-                  <Typography variant='body1' sx={totalSubscribersStyle}>
-                     {parseInt(channelDetails.statistics.subscriberCount).toLocaleString()} subscribers
+                  <Typography sx={totalSubscribersStyle}>
+                     {channelDetails.snippet.customUrl}
+                  </Typography>
+                  <Box
+                     sx={theme => ({
+                        display: 'flex',
+                        alignItems: 'center',
+                        columnGap: '8px',
+                        margin: '3px 0 16px 0',
+                        [theme.breakpoints.down(500)]: {
+                           justifyContent: 'center',
+                           margin: '3px 0 5px 0'
+                        }
+                     })}
+                  >
+                     <Typography sx={totalSubscribersStyle}>
+                        {parseInt(channelDetails.statistics.subscriberCount).toLocaleString()} subscribers
+                     </Typography>
+                     <Box
+                        sx={{
+                           height: '3px',
+                           width: '3px',
+                           backgroundColor: 'text.disabled',
+                           borderRadius: '50%'
+                        }}
+                     />
+                     <Typography sx={totalSubscribersStyle}>
+                        {parseInt(channelDetails.statistics.videoCount).toLocaleString()} videos
+                     </Typography>
+                  </Box>
+                  <Typography
+                     className='channel-name-wrap'
+                     sx={totalSubscribersStyle}
+                  >
+                     {channelDetails.snippet.description}
                   </Typography>
                </Box>
             </Box>

@@ -19,6 +19,7 @@ const videoCardSkeletonWrapper = (theme) => ({
 const cardThumbnailSkeletonStyle = (theme) => ({
    height: '202px',
    width: '360px',
+   borderRadius: '10px',
    [theme.breakpoints.down('md')]: {
       maxWidth: '400px',
       width: '100%',

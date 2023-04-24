@@ -8,12 +8,13 @@ const SubscribeButton = () => {
    return (
       <Button
          sx={theme => ({
-            backgroundColor: darkMode ? '#c84646' : '#ff6666',
-            borderRadius: 0,
+            backgroundColor: darkMode ? '#df4949' : '#ff4d4d',
+            borderRadius: '50px',
             padding: '6px 18px',
+            fontSize: '13px',
             color: '#fff',
             '&:hover': {
-               backgroundColor: darkMode ? '#c84646' : '#ff6666'
+               backgroundColor: darkMode ? '#df4949' : '#ff4d4d'
             },
             [theme.breakpoints.down('sm')]: {
                fontSize: '12px',

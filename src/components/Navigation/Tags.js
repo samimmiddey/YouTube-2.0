@@ -12,9 +12,9 @@ const TagsWrapper = styled(Box)(({ darkmode }) => ({
    left: 0,
    right: 0,
    zIndex: 99,
-   backgroundColor: darkmode === 'true' ? '#21242c' : '#F8F9F9',
-   borderTop: darkmode === 'true' ? '1px solid #373c49' : '1px solid #CACFD2',
-   borderBottom: darkmode === 'true' ? '1px solid #373c49' : '1px solid #CACFD2'
+   backgroundColor: darkmode === 'true' ? '#16181d' : '#F8F9F9',
+   // borderTop: darkmode === 'true' ? '1px solid #373c49' : '1px solid #CACFD2',
+   // borderBottom: darkmode === 'true' ? '1px solid #373c49' : '1px solid #CACFD2'
 }));
 
 // Tags Inner Wrapper Component
@@ -99,14 +99,14 @@ const Tags = () => {
                            minHeight: 0,
                            minWidth: 0,
                            padding: '5px 20px',
-                           borderRadius: '50px',
+                           borderRadius: '10px',
                            width: 'max-content',
-                           backgroundColor: index === tagIndex ? (darkMode ? '#c84646' : '#ff6666') : index !== tagIndex && darkMode ? '#373c49' : '#E5E7E9',
+                           backgroundColor: index === tagIndex ? (darkMode ? '#df4949' : '#ff4d4d') : index !== tagIndex && darkMode ? '#373c49' : '#E5E7E9',
                            fontSize: '14px',
                            textTransform: 'none',
                            color: index === tagIndex ? 'white' : 'text.secondary',
                            '&:hover': {
-                              backgroundColor: index === tagIndex ? (darkMode ? '#c84646' : '#ff6666') : index !== tagIndex && darkMode ? '#373c49' : '#E5E7E9'
+                              backgroundColor: index === tagIndex ? (darkMode ? '#df4949' : '#ff4d4d') : index !== tagIndex && darkMode ? '#373c49' : '#E5E7E9'
                            }
                         }}
                      >

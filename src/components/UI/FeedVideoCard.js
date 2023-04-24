@@ -30,14 +30,17 @@ const thumbnailStyle = {
    height: 'auto',
    width: '100%',
    objectFit: 'cover',
-   aspectRatio: '16/9'
+   aspectRatio: '16/9',
+   borderRadius: '10px'
 };
 
 // Video Title Style
 const videoTitleStyle = (theme) => ({
    fontWeight: 600,
    fontSize: '16px',
+   lineHeight: 1.3,
    color: 'text.primary',
+   marginBottom: '6px',
    [theme.breakpoints.down('sm')]: {
       fontSize: '15px'
    }
@@ -45,21 +48,22 @@ const videoTitleStyle = (theme) => ({
 
 // Channel Title Style
 const channelTitleStyle = (theme) => ({
-   fontSize: '14px',
-   fontWeight: 600,
+   fontSize: '13px',
+   fontWeight: 500,
    color: 'text.secondary',
+   marginBottom: '-1px',
    [theme.breakpoints.down('sm')]: {
-      fontSize: '13px'
+      fontSize: '12px'
    }
 });
 
 // Video Date Style
 const videoDateStyle = (theme) => ({
-   fontSize: '14px',
+   fontSize: '13px',
    fontWeight: 500,
-   color: 'text.disabled',
+   color: 'text.secondary',
    [theme.breakpoints.down('sm')]: {
-      fontSize: '13px'
+      fontSize: '12px'
    }
 });
 

@@ -28,80 +28,90 @@ const RelatedVideoSkeleton = () => {
             }
          })}
       >
-         {skeletonCards.map((item, index) => (
-            <Box
-               key={index}
-               sx={theme => ({
-                  [theme.breakpoints.down('sm')]: {
-                     width: '100%',
-                     display: 'flex',
-                     justifyContent: 'center'
-                  }
-               })}
-            >
+         {
+            skeletonCards.map((item, index) => (
                <Box
+                  key={index}
                   sx={theme => ({
-                     display: 'grid',
-                     gridTemplateColumns: 'repeat(2, 1fr)',
-                     alignItems: 'start',
-                     columnGap: '10px',
-                     maxWidth: '400px',
-                     width: '100%',
-                     [theme.breakpoints.down('lg')]: {
-                        gridTemplateColumns: 'none'
+                     [theme.breakpoints.down('sm')]: {
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'center'
                      }
                   })}
                >
                   <Box
                      sx={theme => ({
-                        height: '90px',
-                        [theme.breakpoints.down('xl')]: {
-                           height: '80px'
-                        },
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(2, 1fr)',
+                        alignItems: 'start',
+                        columnGap: '10px',
+                        maxWidth: '400px',
+                        width: '100%',
                         [theme.breakpoints.down('lg')]: {
-                           height: '200px'
-                        },
-                        [theme.breakpoints.down('sm')]: {
-                           height: '196px'
+                           gridTemplateColumns: 'none'
                         }
                      })}
                   >
-                     <Skeleton animation="wave" variant="rectangular" width='100%' height='100%' />
-                  </Box>
-                  <Box
-                     sx={theme => ({
-                        display: 'flex',
-                        flexDirection: 'column',
-                        rowGap: '2px',
-                        [theme.breakpoints.down('lg')]: {
-                           marginTop: '14px'
-                        }
-                     })}
-                  >
-                     <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        height={15}
-                        width="100%"
-                     />
-                     <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        height={14}
-                        width="60%"
-                        sx={{ marginTop: '8px' }}
-                     />
-                     <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        height={12}
-                        width="40%"
-                        sx={{ marginTop: '8px' }}
-                     />
+                     <Box
+                        sx={theme => ({
+                           height: '90px',
+                           [theme.breakpoints.down('xl')]: {
+                              height: '80px'
+                           },
+                           [theme.breakpoints.down('lg')]: {
+                              height: '200px'
+                           },
+                           [theme.breakpoints.down('sm')]: {
+                              height: '196px'
+                           }
+                        })}
+                     >
+                        <Skeleton
+                           animation="wave"
+                           variant="rectangular"
+                           width='100%'
+                           height='100%'
+                           sx={{
+                              borderRadius: '10px'
+                           }}
+                        />
+                     </Box>
+                     <Box
+                        sx={theme => ({
+                           display: 'flex',
+                           flexDirection: 'column',
+                           rowGap: '2px',
+                           [theme.breakpoints.down('lg')]: {
+                              marginTop: '14px'
+                           }
+                        })}
+                     >
+                        <Skeleton
+                           animation="wave"
+                           variant="rectangular"
+                           height={15}
+                           width="100%"
+                        />
+                        <Skeleton
+                           animation="wave"
+                           variant="rectangular"
+                           height={14}
+                           width="60%"
+                           sx={{ marginTop: '8px' }}
+                        />
+                        <Skeleton
+                           animation="wave"
+                           variant="rectangular"
+                           height={12}
+                           width="40%"
+                           sx={{ marginTop: '8px' }}
+                        />
+                     </Box>
                   </Box>
                </Box>
-            </Box>
-         ))}
+            ))
+         }
       </Box>
    );
 };

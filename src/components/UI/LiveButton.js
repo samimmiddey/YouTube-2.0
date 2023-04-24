@@ -15,9 +15,9 @@ const LiveButton = () => {
             color: '#fff',
             width: 'max-content',
             textTransform: 'uppercase',
-            backgroundColor: darkMode ? '#c84646' : '#ff6666',
+            backgroundColor: darkMode ? '#df4949' : '#ff4d4d',
             '&:hover': {
-               backgroundColor: darkMode ? '#c84646' : '#ff6666'
+               backgroundColor: darkMode ? '#df4949' : '#ff4d4d'
             }
          }}
       >

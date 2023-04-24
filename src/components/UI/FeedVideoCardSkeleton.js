@@ -21,6 +21,9 @@ const FeedVideoCardSkeleton = ({ avatar }) => {
                variant="rectangular"
                width='100%'
                height='100%'
+               sx={{
+                  borderRadius: '10px'
+               }}
             />
          </Box>
          <Box

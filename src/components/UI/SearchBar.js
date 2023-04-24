@@ -12,7 +12,7 @@ const TextFieldComponent = styled(TextField)(({ darkmode }) => ({
    '& .MuiOutlinedInput-root': {
       '& fieldset': {
          borderColor: darkmode === 'true' ? '#373c49' : '#CACFD2',
-         borderRadius: 0,
+         borderRadius: '50px 0 0 50px',
          borderWidth: '1px'
       },
       '&:hover fieldset': {
@@ -31,21 +31,21 @@ const SearchButton = styled(Button)(({ darkmode }) => ({
    width: '60px',
    height: '40px',
    display: 'flex',
-   borderRadius: 0,
+   borderRadius: '0 50px 50px 0',
    alignItems: 'center',
    justifyContent: 'center',
-   backgroundColor: darkmode === 'true' ? '#373c49' : '#E5E7E9',
+   backgroundColor: darkmode === 'true' ? '#373c49' : '#ededed',
    border: darkmode === 'true' ? '1px solid #373c49' : '1px solid #D7DBDD',
    borderLeft: 'none',
    '&:hover': {
-      backgroundColor: darkmode === 'true' ? '#373c49' : '#E5E7E9',
+      backgroundColor: darkmode === 'true' ? '#373c49' : '#ededed',
    }
 }));
 
 // ***** STYLES ***** //
 // Search Bar Wrapper Style
 const searchbarWrapperStyle = {
-   maxWidth: '600px',
+   // maxWidth: '600px',
    width: '100%',
    display: 'flex',
    alignItems: 'center'
@@ -84,7 +84,7 @@ const SearchBar = () => {
    }
 
    return (
-      <form onSubmit={hanldeSubmit}>
+      <form onSubmit={hanldeSubmit} style={{ width: '86%' }}>
          <Box sx={searchbarWrapperStyle}>
             <Box sx={{ width: '100%', position: 'relative' }}>
                <TextFieldComponent
